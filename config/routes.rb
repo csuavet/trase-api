@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v3 do
       get '/get_contexts', to: 'contexts#index'
       get '/get_all_nodes', to: 'nodes#get_all_nodes'
+      get '/get_node_attributes', to: 'nodes#node_attributes'
     end
     namespace :v2 do
       resources :geo_id, only: :index

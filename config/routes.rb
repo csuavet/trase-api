@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     namespace :v3 do
       get '/get_contexts', to: 'contexts#index'
       get '/get_all_nodes', to: 'nodes#get_all_nodes'
-      get '/get_node_attributes', to: 'nodes#node_attributes'
     end
     namespace :v2 do
       resources :geo_id, only: :index
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
       get '/get_all_nodes', to: 'nodes#all_nodes'
       get '/get_place_node_attributes', to: 'place_factsheet#place_data'
       get '/get_actor_node_attributes', to: 'actor_factsheet#actor_data'
+      get '/get_node_attributes', to: 'nodes#node_attributes'
     end
   end
 end

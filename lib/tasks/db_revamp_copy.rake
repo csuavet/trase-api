@@ -11,6 +11,7 @@ namespace :db do
         countries
         commodities
         contexts
+        context_properties
         node_types
         context_node_types
         nodes
@@ -98,9 +99,19 @@ end
 
 def contexts_insert_sql
   <<-SQL
-  INSERT INTO revamp.contexts (id, country_id, commodity_id, years, default_year, default_basemap, is_disabled, is_default, created_at, updated_at)
+  INSERT INTO revamp.contexts (id, country_id, commodity_id, created_at, updated_at)
   SELECT
-    id, country_id, commodity_id, years, default_year, default_basemap,
+    id, country_id, commodity_id,
+    NOW(), NOW()
+  FROM public.context;
+  SQL
+end
+
+def context_properties_insert_sql
+  <<-SQL
+  INSERT INTO revamp.context_properties (context_id, years, default_year, default_basemap, is_disabled, is_default, created_at, updated_at)
+  SELECT
+    id, years, default_year, default_basemap,
     COALESCE(is_disabled, FALSE),
     COALESCE(is_default, FALSE),
     NOW(), NOW()
